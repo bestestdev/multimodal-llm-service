@@ -14,7 +14,7 @@ import librosa
 import transformers
 from pydantic import BaseModel
 
-from api.chat import Message, ChatResponse
+from models.schemas import Message, ChatResponse
 
 class ModelManager:
     """Manager for loading and running the Ultravox model."""

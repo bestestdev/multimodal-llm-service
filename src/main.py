@@ -9,6 +9,7 @@ import uvicorn
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
+from pathlib import Path
 
 from api.chat import router as chat_router
 from api.websocket import router as websocket_router
@@ -16,6 +17,9 @@ from utils.project import setup_logging, check_gpu_compatibility, print_startup_
 
 # Set up logging
 setup_logging()
+
+# Get the project root directory
+PROJECT_ROOT = Path(__file__).parent.parent.absolute()
 
 # Initialize FastAPI app
 app = FastAPI(
@@ -38,7 +42,8 @@ app.include_router(chat_router, prefix="/api")
 app.include_router(websocket_router, prefix="/ws")
 
 # Serve static files for frontend
-app.mount("/app", StaticFiles(directory="frontend/build", html=True), name="app")
+frontend_build_path = os.path.join(PROJECT_ROOT, "frontend", "build")
+app.mount("/app", StaticFiles(directory=frontend_build_path, html=True), name="app")
 
 @app.get("/")
 async def root():

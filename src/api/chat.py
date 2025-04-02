@@ -6,29 +6,14 @@ from typing import List, Dict, Any, Optional
 import tempfile
 import os
 from fastapi import APIRouter, UploadFile, File, Form, HTTPException
-from pydantic import BaseModel
 
+from models.schemas import Message, ChatRequest, ChatResponse
 from models.inference import ModelManager
 
 router = APIRouter(tags=["chat"])
 
 # Initialize model manager
 model_manager = ModelManager()
-
-class Message(BaseModel):
-    role: str
-    content: str
-
-class ChatRequest(BaseModel):
-    messages: List[Message]
-    system_prompt: Optional[str] = "You are a helpful assistant."
-    max_tokens: Optional[int] = 1024
-    temperature: Optional[float] = 0.7
-
-class ChatResponse(BaseModel):
-    response: str
-    total_tokens: int
-    inference_time: float
 
 @router.post("/chat", response_model=ChatResponse)
 async def chat(request: ChatRequest):
