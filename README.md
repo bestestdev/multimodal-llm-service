@@ -41,23 +41,40 @@ git clone https://github.com/yourusername/multimodal-llm-service.git
 cd multimodal-llm-service
 ```
 
-2. Create and activate a virtual environment:
+2. Run the setup script to install dependencies and set up the frontend:
+```bash
+./setup_frontend.sh
+```
+
+This script will:
+- Create and activate a Python virtual environment
+- Install Python dependencies from requirements.txt
+- Install frontend dependencies
+
+3. Start the service using the provided run script:
+```bash
+./run.sh
+```
+
+The service will be available at http://localhost:8000. The web interface can be accessed at http://localhost:8000/app.
+
+Alternatively, you can set up manually:
+
+1. Create and activate a virtual environment:
 ```bash
 python -m venv venv
 source venv/bin/activate  # On Windows: venv\Scripts\activate
 ```
 
-3. Install dependencies:
+2. Install dependencies:
 ```bash
 pip install -r requirements.txt
 ```
 
-4. Start the service:
+3. Start the service:
 ```bash
 python src/main.py
 ```
-
-The service will be available at http://localhost:8000. The web interface can be accessed at http://localhost:8000/app.
 
 ## API Usage
 
