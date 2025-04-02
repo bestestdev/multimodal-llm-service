@@ -11,6 +11,7 @@ transformers>=4.32.0
 librosa>=0.10.0
 soundfile>=0.12.1
 numpy>=1.22.0
+peft>=0.4.0
 
 # Optional dependencies for model optimizations
 bitsandbytes>=0.39.0
